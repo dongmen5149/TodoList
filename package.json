@@ -1,0 +1,16 @@
+{
+  "name": "todolist_opensource",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Ryu",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "client": "yarn workspace client start",
+    "server": "yarn workspace server start"
+  }
+}

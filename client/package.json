@@ -1,0 +1,27 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "next"
+  },
+  "dependencies": {
+    "DatePicker": "^2.0.0",
+    "axios": "^0.26.0",
+    "from": "^0.1.7",
+    "import": "^0.0.6",
+    "next": "^12.1.0",
+    "react": "^17.0.2",
+    "react-datepicker": "^4.7.0",
+    "react-dom": "^17.0.2",
+    "sass": "^1.49.9",
+    "swr": "^1.2.2"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.39",
+    "@types/react-datepicker": "^4.3.4",
+    "@types/react-dom": "^17.0.11",
+    "webpack": "^5.69.1"
+  }
+}
