@@ -19,9 +19,10 @@ const MsgList = ({ smsgs }: { smsgs: Message[] }) => {
     setMsgs((msgs) => [newMsg, ...msgs]);
   };
 
-  const onUpdate = async (text: string, id?: string) => {
+  const onUpdate = async (text: string, id?: string, deadLine?: number) => {
     const newMsg: Message = await fetcher(METHOD.PUT, `/messages/${id}`, {
       text,
+      deadLine,
     });
     if (!newMsg) throw Error("something wrong");
     setMsgs((msgs) => {

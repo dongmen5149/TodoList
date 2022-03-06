@@ -66,7 +66,11 @@ const messagesRoute: CustomRoute[] = [
         const msgs = getMsgs();
         const targetIndex = msgs.findIndex((msg) => msg.id === id);
         if (targetIndex < 0) throw "메시지가 없습니다.";
-        const newMsg = { ...msgs[targetIndex], text: body.text };
+        const newMsg = {
+          ...msgs[targetIndex],
+          text: body.text,
+          deadLine: body.deadLine,
+        };
         msgs.splice(targetIndex, 1, newMsg);
         setMsgs(msgs);
         res.send(newMsg);
