@@ -22,3 +22,17 @@ export interface Message {
   text: string;
   deadLine: number;
 }
+
+export interface Resolver {
+  [key: string]: {
+    [key: string]: (
+      parent: any,
+      variables: { [key: string]: any },
+      context: {
+        db: {
+          messages: Message[];
+        };
+      }
+    ) => any;
+  };
+}

@@ -10,3 +10,8 @@ export interface Message {
   deadLine: number;
   text: string;
 }
+
+export interface MsgQueryData {
+  pages: { messages: Message[] }[];
+  pageParams: string;
+}

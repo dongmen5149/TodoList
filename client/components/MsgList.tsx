@@ -59,6 +59,8 @@ const MsgList = ({ smsgs }: { smsgs: Message[] }) => {
     getMessages();
   }, []);
 
+  console.log("render");
+
   return (
     <>
       <MsgInput mutate={onCreate} text={""} deadLine={0} />

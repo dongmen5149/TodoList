@@ -1,24 +1,31 @@
 import express from "express";
-import cors from "cors";
-import messagesRoute from "./routes/messages";
-import { CustomRoute } from "./types";
+import { ApolloServer } from "apollo-server-express";
+import resolvers from "./resolvers/index";
+import schema from "./schema/index";
+import { readDB } from "./dbController";
+import { DBField } from "./types";
+(async () => {
+  const server = new ApolloServer({
+    typeDefs: schema,
+    resolvers,
+    context: {
+      db: {
+        messages: readDB(DBField.MESSAGES),
+      },
+    },
+  });
 
-const app = express();
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+  const app = express();
+  await server.start();
+  server.applyMiddleware({
+    app,
+    path: "/graphql",
+    cors: {
+      origin: ["http://localhost:3000", "https://studio.apollographql.com"],
+      credentials: true,
+    },
+  });
 
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    credentials: true,
-  })
-);
-
-const routes: CustomRoute[] = [...messagesRoute];
-routes.forEach(({ method, route, handler }) => {
-  app[method](route, handler);
-});
-
-app.listen(8000, () => {
+  await app.listen({ port: 8000 });
   console.log("server listening on 8000...");
-});
+})();
